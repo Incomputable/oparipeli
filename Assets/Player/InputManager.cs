@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
         groundMovement.Jump.performed += _ => movement.OnJumpPressed();
         groundMovement.Fire.performed += _ => shoot.OnFirePressed();
         groundMovement.CameraSwap.performed += _ => movement.OnTabPressed();
+        groundMovement.Action1.performed += _ => shoot.On1Pressed();
 
         Cursor.visible = false;
         

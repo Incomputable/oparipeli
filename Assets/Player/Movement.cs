@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
 
     public Camera cam1;
     public Camera cam2;
+    public GameObject prefab;
 
     private void Update()
     {
@@ -55,6 +56,14 @@ public class Movement : MonoBehaviour
         else
         {
             controller2.Move(horizontalVelocity * Time.deltaTime);
+
+            if (jump)
+            {
+                Instantiate(prefab, 
+                            controller2.transform.position, 
+                            controller2.transform.rotation);
+                jump = false;
+            }
         }
 
         if (swap == false){

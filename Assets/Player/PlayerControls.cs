@@ -65,6 +65,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Action1"",
+                    ""type"": ""Button"",
+                    ""id"": ""814af082-39ca-4748-bb63-054624a14729"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""CameraSwap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24f5681b-ef57-472d-84e9-8cba0b2f1d84"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -191,6 +210,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_GroundMovement_MouseY = m_GroundMovement.FindAction("MouseY", throwIfNotFound: true);
         m_GroundMovement_Fire = m_GroundMovement.FindAction("Fire", throwIfNotFound: true);
         m_GroundMovement_CameraSwap = m_GroundMovement.FindAction("CameraSwap", throwIfNotFound: true);
+        m_GroundMovement_Action1 = m_GroundMovement.FindAction("Action1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +266,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_GroundMovement_MouseY;
     private readonly InputAction m_GroundMovement_Fire;
     private readonly InputAction m_GroundMovement_CameraSwap;
+    private readonly InputAction m_GroundMovement_Action1;
     public struct GroundMovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -256,6 +277,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @MouseY => m_Wrapper.m_GroundMovement_MouseY;
         public InputAction @Fire => m_Wrapper.m_GroundMovement_Fire;
         public InputAction @CameraSwap => m_Wrapper.m_GroundMovement_CameraSwap;
+        public InputAction @Action1 => m_Wrapper.m_GroundMovement_Action1;
         public InputActionMap Get() { return m_Wrapper.m_GroundMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CameraSwap.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraSwap;
                 @CameraSwap.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraSwap;
                 @CameraSwap.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraSwap;
+                @Action1.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnAction1;
+                @Action1.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnAction1;
+                @Action1.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnAction1;
             }
             m_Wrapper.m_GroundMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +330,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CameraSwap.started += instance.OnCameraSwap;
                 @CameraSwap.performed += instance.OnCameraSwap;
                 @CameraSwap.canceled += instance.OnCameraSwap;
+                @Action1.started += instance.OnAction1;
+                @Action1.performed += instance.OnAction1;
+                @Action1.canceled += instance.OnAction1;
             }
         }
     }
@@ -317,5 +345,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMouseY(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnCameraSwap(InputAction.CallbackContext context);
+        void OnAction1(InputAction.CallbackContext context);
     }
 }

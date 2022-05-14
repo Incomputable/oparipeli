@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ThunderTrigger
+  - ThunderAbility
   layers:
   - Default
   - TransparentFX
@@ -12,7 +14,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - AbilityLightning
   - Ground
   - RTStag
   - 
